@@ -7,8 +7,16 @@ Using native node dns to query complex DNS is a hustle. This is a simple wrapper
 
 ## Install
 
+master branch
+
 ```
 npm i node-dig-dns -S
+```
+
+this forked
+
+```
+npm install git://github.com/yusronhanan/node-dig-dns.git#return-all-values --save
 ```
 
 ## Usage
