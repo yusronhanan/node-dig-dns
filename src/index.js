@@ -5,13 +5,14 @@ function parseSection(values, section) {
   if (
     section === 'answer' ||
     section === 'additional') {
-    return {
-      domain: values[0],
-      type: values[3],
-      ttl: values[1],
-      class: values[2],
-      value: values[values.length - 1],
-    };
+    // return {
+    //   domain: values[0],
+    //   type: values[3],
+    //   ttl: values[1],
+    //   class: values[2],
+    //   value: values[values.length - 1],
+    // };
+    return { values: values };
   }
   return values;
 }

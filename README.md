@@ -1,17 +1,26 @@
+It is forked from https://github.com/StephanGeorg/node-dig-dns/
+The changes made here to get all return values
+
 # node-dig-dns [![npm version](https://badge.fury.io/js/node-dig-dns.svg)](https://badge.fury.io/js/node-dig-dns)
+
 Using native node dns to query complex DNS is a hustle. This is a simple wrapper for the unix/linux/macos dig command (domain information grope). Output is parsed to JSON.
 
 ## Install
+
 ```
 npm i node-dig-dns -S
 ```
 
 ## Usage
+
 ```
 dig([args], (options))
 ```
+
 You can add [all args from dig](https://linux.die.net/man/1/dig) to the args array.
+
 ### Examples
+
 ```
 dig(['google.com', 'ANY'])
   .then((result) => {
@@ -21,7 +30,9 @@ dig(['google.com', 'ANY'])
     console.log('Error:', err);
   });
 ```
+
 Set custom DNS server:
+
 ```
 dig(['@8.8.8.4','google.com', 'ANY'])
   .then((result) => {
@@ -31,17 +42,21 @@ dig(['@8.8.8.4','google.com', 'ANY'])
     console.log('Error:', err);
   });
 ```
+
 ### Options
+
 Optional parameters:
-* raw: Get the raw output as string. If +short option, raw output is default
-* dig: Manually set the dig command (/my/custum/path/to/dig)
+
+- raw: Get the raw output as string. If +short option, raw output is default
+- dig: Manually set the dig command (/my/custum/path/to/dig)
 
 ## Result
 
-The dig result is parsed and return in JSON:
+The dig result is parsed and return in JSON (from master branch):
+
 ```
 { question: [ [ ';google.com.', 'IN', 'ANY' ] ],
-  answer: 
+  answer:
    [ { domain: 'google.com.',
        type: 'A',
        ttl: '268',
@@ -57,10 +72,26 @@ The dig result is parsed and return in JSON:
        ttl: '568',
        class: 'IN',
        value: '30 alt2.aspmx.l.google.com.' },
-       
+
        ...
-       
-    ],         
+
+    ],
+  time: 41,
+  server: '8.8.8.8#53(8.8.8.8)',
+  datetime: 'Mon Oct  9 23:56:37 2017',
+  size: 373 }
+```
+
+The dig result is parsed and return in JSON (from this forked):
+
+```
+{ question: [ [ ';google.com.', 'IN', 'ANY' ] ],
+  answer:
+   [ { values: [domain, ttl, class, type, .... , port] },
+     { values: [domain, ttl, class, type, .... , port] },
+     { values: [domain, ttl, class, type, .... , port] },
+       ...
+    ],
   time: 41,
   server: '8.8.8.8#53(8.8.8.8)',
   datetime: 'Mon Oct  9 23:56:37 2017',
